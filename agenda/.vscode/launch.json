@@ -1,0 +1,54 @@
+{
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    
+    "compounds": [
+        {
+            "name": "Launch Config Django/Db",
+            "configurations": [
+                "Django: Makemigrations",
+                "Django: Migrate",
+                "Django: Run Server",
+            ],
+            "stopAll" : true,
+        }
+    ],
+    "configurations": [
+        
+        {
+            "name": "Django: Makemigrations",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\manage.py",
+            "args": [
+                "makemigrations",
+            ],
+            "django": true,
+            "justMyCode": true
+        },
+        {
+            "name": "Django: Migrate",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\manage.py",
+            "args": [
+                "migrate",
+            ],
+            "django": true,
+            "justMyCode": true
+        },
+        {
+            "name": "Django: Run Server",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\manage.py",
+            "args": [
+                "runserver"
+            ],
+            "django": true,
+            "justMyCode": true
+        }
+    ]
+}
