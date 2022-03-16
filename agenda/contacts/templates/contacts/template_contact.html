@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1 class="mt-5">{{ contact.name }} {{ contact.last_name }}</h1>
+    {% if contact.image %}
+        <p>
+            <img src="{{ contact.image.url }}" style="max-width: 250px; height: auto;">
+        </p>
+    {% endif %}
     <dl>
         <dt>
             ID
@@ -24,7 +29,7 @@
             Data criação
         </dt>
         <dd>
-            {{ contact.creation_date | date:'d/m/Y'}}
+            {{ contact.creation_date | date:'d/m/Y' }}
         </dd>
         <dt>
             Categoria

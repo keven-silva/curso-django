@@ -1,10 +1,18 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
+
 from django.core.paginator import Paginator
+
+from django.db.models import Q, Value
+from django.db.models.functions import Concat
+from django.contrib import messages
+
 from .models import Contact
 
 
 def index(request):
+    messages.add_message(request, messages.ERROR, 'Ocorreu um erro.')
+    
     contacts = Contact.objects.order_by('-id').filter(
         show=True
     )
@@ -31,13 +39,17 @@ def template_contact(request, pk):
 
 def busca(request):
     termo = request.GET.get('termo')
-    
-    print(termo)
+    field = Concat('name', Value(' '), 'last_name')
 
-    contacts = Contact.objects.order_by('-id').filter(
-        name__icontains=termo,
-        show=True
+    if termo is None or not termo:
+        raise Http404()
+    
+    contacts = Contact.objects.annotate(
+        full_name = field
+    ).filter(
+        Q(full_name__icontains=termo) | Q(phone__icontains=termo)
     )
+    
     paginator = Paginator(contacts, 10)
 
     page = request.GET.get('p')
