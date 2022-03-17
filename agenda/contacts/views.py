@@ -1,5 +1,5 @@
 from django.http import Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 
 from django.core.paginator import Paginator
 
@@ -11,8 +11,6 @@ from .models import Contact
 
 
 def index(request):
-    messages.add_message(request, messages.ERROR, 'Ocorreu um erro.')
-    
     contacts = Contact.objects.order_by('-id').filter(
         show=True
     )
@@ -42,7 +40,12 @@ def busca(request):
     field = Concat('name', Value(' '), 'last_name')
 
     if termo is None or not termo:
-        raise Http404()
+       messages.add_message(
+           request, 
+           messages.ERROR,
+           'Campo termo não pode ficar vazio.'
+       )
+       return redirect('index')
     
     contacts = Contact.objects.annotate(
         full_name = field

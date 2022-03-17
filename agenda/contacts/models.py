@@ -16,7 +16,7 @@ class Contact(models.Model):
     email = models.EmailField(verbose_name=(
         "Email"), max_length=255, blank=True)
     creation_date = models.DateTimeField(
-        verbose_name=("Creation Date"), auto_created=True)
+        verbose_name=("Creation Date"), auto_created=True, auto_now=True)
     description = models.TextField(verbose_name=("Description"), blank=True)
     category = models.ForeignKey(Category, verbose_name=(
         "Category"), on_delete=models.DO_NOTHING)

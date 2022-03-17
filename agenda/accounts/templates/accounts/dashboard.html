@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block titulo %}Dashboard de {{ user }} |{% endblock  %}
+{% block content %}
+    <h1>Olá {{ user.first_name }} {{ user.last_name }}</h1>
+    {% include 'partial/_messages.html' %}
+    <p>
+        O seu nome de usuário é {{ user }}.
+    </p>
+    <div class="container">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table class="table">
+                {{ form }}
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+{% endblock %}

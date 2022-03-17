@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_seed',
     'contacts',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -130,10 +131,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 from django.contrib.messages import constants
 
-MESSAGE_TAG = {
-    constants.ERROR: 'alert-danger', 
-    constants.WARNING: 'alert-warning', 
+MESSAGE_TAGS = {
+    constants.ERROR: 'alert-danger',
+    constants.WARNING: 'alert-warning',
     constants.DEBUG: 'alert-info',
-    constants.INFO: 'alert-info', 
-    constants.SUCCESS: 'alert-success', 
+    constants.SUCCESS: 'alert-success',
+    constants.INFO: 'alert-info',
 }

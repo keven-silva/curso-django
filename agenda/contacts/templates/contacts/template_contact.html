@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% block titulo %}{{contact.name}} {{contact.last_name}} | {% endblock  %}
+
 {% block content %}
     <h1 class="mt-5">{{ contact.name }} {{ contact.last_name }}</h1>
     {% if contact.image %}
