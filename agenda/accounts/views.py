@@ -76,6 +76,8 @@ def register(request):
         password=password,
         first_name=name,
         last_name=last_name)
+        
+    user.save()
 
     return redirect('login')
 
